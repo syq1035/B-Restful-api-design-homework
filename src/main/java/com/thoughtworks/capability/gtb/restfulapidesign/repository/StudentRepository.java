@@ -23,4 +23,30 @@ public class StudentRepository {
         return student;
     }
 
+    public Student findById(int id) {
+        for (Student student : this.students) {
+            if (student.getId() == id) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    public void deleteById(int id) {
+        this.students.remove(findById(id));
+    }
+
+    public List<Student> findAll() {
+        return this.students;
+    }
+
+    public List<Student> findAllByGender(String gender) {
+        List<Student> studentList = new ArrayList<>();
+        for (Student student : this.students) {
+            if (student.getGender().equals(gender)) {
+                studentList.add(student);
+            }
+        }
+        return studentList;
+    }
 }

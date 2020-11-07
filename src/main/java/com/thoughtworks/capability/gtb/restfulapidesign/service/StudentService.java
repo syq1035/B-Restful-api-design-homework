@@ -4,6 +4,8 @@ import com.thoughtworks.capability.gtb.restfulapidesign.dto.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StudentService {
 
@@ -15,5 +17,20 @@ public class StudentService {
 
     public Student create(Student student) {
         return studentRepository.save(student);
+    }
+
+    public void delete(Integer id) {
+        studentRepository.deleteById(id);
+    }
+
+    public List<Student> getAllStudents(String gender) {
+        if (gender != null) {
+            return studentRepository.findAllByGender(gender);
+        }
+        return studentRepository.findAll();
+    }
+
+    public Student getStudentById(Integer id) {
+        return studentRepository.findById(id);
     }
 }
