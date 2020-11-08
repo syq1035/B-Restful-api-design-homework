@@ -21,6 +21,10 @@ public class GroupRepository {
         this.studentRepository = studentRepository;
     }
 
+    public List<Group> findAll() {
+        return groups;
+    }
+
     public List<Group> grouping() {
         initGroups();
         List<Student> students = studentRepository.findAll();
