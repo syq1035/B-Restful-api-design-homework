@@ -13,4 +13,8 @@ public class Student {
     private String name;
     private String gender;
     private String note;
+
+    public Student(String name) {
+        this.name = name;
+    }
 }

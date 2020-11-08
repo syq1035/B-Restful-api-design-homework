@@ -14,5 +14,14 @@ public class Group {
     private Integer id;
     private String name;
     private String note;
-    List<Student> students =new ArrayList<>();
+    private List<Student> students = new ArrayList<>();
+
+    public Group(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public void add(Student student){
+        students.add(student);
+    }
 }

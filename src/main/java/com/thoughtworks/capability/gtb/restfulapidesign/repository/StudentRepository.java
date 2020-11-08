@@ -9,22 +9,29 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
 public class StudentRepository {
-    private List<Student> students;
-    private AtomicInteger studentCount;
+    private List<Student> students = new ArrayList<>();
+    private AtomicInteger studentCount = new AtomicInteger(students.size());
 
     public StudentRepository() {
-        this.students = new ArrayList<>();
-        this.studentCount = new AtomicInteger(students.size());
+        initStudents();
+    }
+
+    public void initStudents() {
+        String[] StudentsName = {"成吉思汗", "鲁班七号", "太乙真人","钟无艳", "花木兰",
+                "雅典娜", "芈月", "白起", "刘禅", "庄周", "马超", "刘备", "哪吒", "大乔","蔡文姬"};
+        for(String name : StudentsName) {
+            save(new Student(name));
+        }
     }
 
     public Student save(Student student) {
-        student.setId(this.studentCount.incrementAndGet());
-        this.students.add(student);
+        student.setId(studentCount.incrementAndGet());
+        students.add(student);
         return student;
     }
 
     public Student findById(int id) {
-        for (Student student : this.students) {
+        for (Student student : students) {
             if (student.getId() == id) {
                 return student;
             }
@@ -33,7 +40,7 @@ public class StudentRepository {
     }
 
     public void deleteById(int id) {
-        this.students.remove(findById(id));
+        students.remove(findById(id));
     }
 
     public Student update(int id, Student student) {
@@ -45,12 +52,12 @@ public class StudentRepository {
     }
 
     public List<Student> findAll() {
-        return this.students;
+        return students;
     }
 
     public List<Student> findAllByGender(String gender) {
         List<Student> studentList = new ArrayList<>();
-        for (Student student : this.students) {
+        for (Student student : students) {
             if (student.getGender().equals(gender)) {
                 studentList.add(student);
             }
