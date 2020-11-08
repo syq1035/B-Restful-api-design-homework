@@ -3,9 +3,7 @@ package com.thoughtworks.capability.gtb.restfulapidesign.controller;
 import com.thoughtworks.capability.gtb.restfulapidesign.dto.Group;
 import com.thoughtworks.capability.gtb.restfulapidesign.service.GroupService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +23,10 @@ public class GroupController {
     @GetMapping("/groups")
     public ResponseEntity<List<Group>> getAllGroups() {
         return ResponseEntity.ok(groupService.getAllGroups());
+    }
+
+    @PatchMapping("/groups")
+    public ResponseEntity<Group> updateGroupName(@RequestParam Integer id, @RequestParam String name) {
+        return ResponseEntity.ok(groupService.updateGroupName(id, name));
     }
 }

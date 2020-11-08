@@ -44,4 +44,19 @@ public class GroupRepository {
             groups.add(new Group(groupCount.incrementAndGet(), (i + 1) + " 组"));
         }
     }
+
+    public Group findById(int id) {
+        for (Group group : groups) {
+            if (group.getId() == id) {
+                return group;
+            }
+        }
+        return null;
+    }
+
+    public Group updateNameById(int id, String name) {
+        Group group = findById(id);
+        group.setName(name);
+        return group;
+    }
 }
