@@ -40,4 +40,9 @@ public class StudentController {
     public void delete(@PathVariable Integer id) {
         studentService.delete(id);
     }
+
+    @PatchMapping("/students/{id}")
+    public ResponseEntity<Student> update(@PathVariable Integer id, @RequestBody Student student) {
+        return ResponseEntity.ok(studentService.update(id, student));
+    }
 }

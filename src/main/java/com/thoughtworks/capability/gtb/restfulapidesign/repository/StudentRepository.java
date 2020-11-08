@@ -36,6 +36,14 @@ public class StudentRepository {
         this.students.remove(findById(id));
     }
 
+    public Student update(int id, Student student) {
+        Student student1 = findById(id);
+        student1.setName(student.getName() != null ? student.getName() : student1.getName());
+        student1.setGender(student.getGender() != null ? student.getGender() : student1.getGender());
+        student1.setNote(student.getNote() != null ? student.getNote() : student1.getNote());
+        return student1;
+    }
+
     public List<Student> findAll() {
         return this.students;
     }

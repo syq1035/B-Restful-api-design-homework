@@ -23,6 +23,10 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
+    public Student update(Integer id, Student student) {
+        return studentRepository.update(id, student);
+    }
+
     public List<Student> getAllStudents(String gender) {
         if (gender != null) {
             return studentRepository.findAllByGender(gender);
